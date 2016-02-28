@@ -1,52 +1,27 @@
 package com.matthias.parkingfinder;
 
-import java.util.List;
-
 /**
- * Created by Matthias on 16-02-27.
+ * Created by Matthias on 16-02-28.
  */
 public class Time
 {
-	// something like this
-	private int from;
-	private int to;
+	private int hour;
+	private int min;
 
-	public Time(int from, int to)
+	public Time(int hour, int min)
 	{
-		this.from = from;
-		this.to = to;
+		this.hour = hour;
+		this.min = min;
 	}
 
-	/**
-	 * 0000 - 2400 has overlap with 0100 - 0130.
-	 * A.hasOverlapWith(B) is equivalent to B.hasOverlapWith(A).
-	 *
-	 * @param time
-	 * @return
-	 */
-	boolean hasOverlapWith(Time time)
-	{
-		return false;
-	}
+	public int getHour()
+	{ return hour; }
 
-	/**
-	 * Example: Time (24 hours) - Time (0100 - 0130) = { {0000 - 0100}, {0130 - 2400} }
-	 * Maybe useful to use with nonParkingTime.
-	 * @param another
-	 * @return A.exclude(B) == A - B
-	 */
-	List<Time> exclude(Time another)
-	{
-		return null;
-	}
+	public int getMin()
+	{ return min; }
 
-	/**
-	 * Convert minutes to hour-minutes String representation
-	 * @param minute
-	 * @return XXh YYm if min > 60, 1h if min == 60, YYm if min < 60.
-	 */
-	static String convertMinToHour(int minute)
-	{
-		return null;
-	}
+	// 23h 59m
+	@Override
+	public String toString()
+	{ return String.format("%dh %dm", hour, min); }
 }

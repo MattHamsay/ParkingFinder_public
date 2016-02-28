@@ -7,6 +7,10 @@ package com.matthias.parkingfinder;
  * - Current Location of the user
  * - Destination (may not have both streetName / zipCode)
  * - Address of ParkingSpace
+ *
+ * Future Addition depending on Google Map API?
+ * - Address of ... city, country? if required then such class members should be added to this class ...
+ *
  */
 public class Address
 {
@@ -43,33 +47,15 @@ public class Address
 	 * @param another
 	 * @return distance from another Address in terms of km. Maybe use
 	 */
-	double getDistanceFrom(Address another)
+	double getDistanceInKmFrom(Address another)
 	{
-		return -1;
+		return GoogleMapAPI.getDistanceInKmBetween(this, another);
 	}
 
-	String getDistanceStringFrom(Address another)
-	{ return String.format("%.1fkm", getDistanceFrom(another)); }
+	String getDistanceInKmStringFrom(Address another)
+	{ return String.format("%.1fkm", getDistanceInKmFrom(another)); }
 
-	// convert the distance into walking time
-	double getWalkingTime(double km)
-	{
-		return -1;
-	}
-
-	String getDrivingTimeString(Address to)
-	{
-		return "-23h -1m";
-	}
-
-	double getDrivingTime(Address to)
-	{
-		return -1;
-	}
-
-	double getDrivingTime(double km)
-	{
-		return -1;
-	}
+	Time getDrivingTime(Address to)
+	{ return GoogleMapAPI.getDrivingTimeBetween(this, to); }
 
 }

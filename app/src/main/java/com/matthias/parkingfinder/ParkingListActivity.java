@@ -155,8 +155,8 @@ public class ParkingListActivity extends AppCompatActivity
 		int         streetNumber        = 1;
 		String      zipCode             = "R3T 2N2";
 		double      price               = 3.5;
-		Time        chargingTime        = new Time(1, 3);
-		Time        nonParkingTime      = new Time(2, 4);
+		TimePeriod chargingTimePeriod = new TimePeriod(1, 3);
+		TimePeriod nonParkingTimePeriod = new TimePeriod(2, 4);
 		ParkingSpace.ParkingType type   = ParkingSpace.ParkingType.PARKADE;
 		boolean     hasCamera           = true;
 		boolean     hasAttendant        = true;
@@ -167,7 +167,7 @@ public class ParkingListActivity extends AppCompatActivity
 		{
 			Address address = new Address(streetName, streetNumber + i, zipCode);
 			ParkingSpace foo = new ParkingSpace(thumbnail, parkingName, address, price,
-			                                    chargingTime, nonParkingTime,
+			                                    chargingTimePeriod, nonParkingTimePeriod,
 			                                    type, hasCamera, hasAttendant);
 			list.add(foo);
 		}
