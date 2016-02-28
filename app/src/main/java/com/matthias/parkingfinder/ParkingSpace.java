@@ -16,19 +16,19 @@ public class ParkingSpace
 	private double cost;
 	private Time chargingTime;          // non-charging time = 24 hours - charging time - nonParkingTime
 	private Time nonParkingTime;        // times when people are not allowed to park
-	private Location location;
+	private Address address;
 	private boolean hasCamera;
 	private boolean hasAttendant;
 	private int type;
 
 
-	public ParkingSpace(double cost, Time chargingTime, Time nonParkingTime, Location location,
+	public ParkingSpace(double cost, Time chargingTime, Time nonParkingTime, Address address,
 	                    boolean hasCamera, boolean hasAttendant, int type)
 	{
 		this.cost = cost;
 		this.chargingTime = chargingTime;
 		this.nonParkingTime = nonParkingTime;
-		this.location = location;
+		this.address = address;
 		this.hasCamera = hasCamera;
 		this.hasAttendant = hasAttendant;
 		this.type = type;
