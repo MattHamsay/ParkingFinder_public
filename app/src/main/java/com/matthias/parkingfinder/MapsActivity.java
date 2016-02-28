@@ -1,5 +1,6 @@
 package com.matthias.parkingfinder;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -12,7 +13,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 {
-
 	private GoogleMap mMap;
 
 	@Override
