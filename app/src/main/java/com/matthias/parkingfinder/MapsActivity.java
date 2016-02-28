@@ -24,6 +24,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.map);
 		mapFragment.getMapAsync(this);
+
+		// test ParkingListActivity
+		Intent testIntent = new Intent(getApplicationContext(), ParkingListActivity.class);
+		startActivity(testIntent);
 	}
 
 
