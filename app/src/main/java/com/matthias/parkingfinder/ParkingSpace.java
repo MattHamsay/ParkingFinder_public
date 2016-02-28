@@ -2,6 +2,8 @@ package com.matthias.parkingfinder;
 
 import android.graphics.Bitmap;
 
+import java.util.Comparator;
+
 /**
  * Created by Matthias on 16-02-27.
  */
@@ -43,6 +45,7 @@ public class ParkingSpace
 
 	Bitmap getThumbnail()
 	{ return thumbnail; }
+
 	String getName()
 	{ return name; }
 
@@ -68,4 +71,25 @@ public class ParkingSpace
 
 	boolean isSurfaceLot()
 	{ return parkingType.equals(ParkingType.SURFACE_LOT); }
+
+
+
+	public static class Comparators
+	{
+		public static Comparator<ParkingSpace> PRICE = new Comparator<ParkingSpace>()
+		{
+			@Override
+			public int compare(ParkingSpace o1, ParkingSpace o2)
+			{
+				double diff = o1.getPrice() - o2.getPrice();
+
+				if (diff > 0)
+					return 1;
+				else if (diff == 0)
+					return 0;
+				else
+					return -1;
+			}
+		};
+	}
 }
