@@ -2,19 +2,20 @@ package com.matthias.parkingfinder;
 
 import android.graphics.Bitmap;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  * Created by Matthias on 16-02-27.
  */
-public class ParkingSpace
+public class ParkingSpace implements Serializable
 {
 	// constant var for parking space parkingType
-	enum ParkingType
+	enum ParkingType implements Serializable
 	{ STREET_PARKING, PARKADE, SURFACE_LOT }
 
 	// details of the parking space
-	private Bitmap thumbnail;
+	private transient Bitmap thumbnail;
 	private String name;
 	private Address address;
 	private double price;

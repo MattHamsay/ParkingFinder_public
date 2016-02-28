@@ -1,5 +1,7 @@
 package com.matthias.parkingfinder;
 
+import java.io.Serializable;
+
 /**
  * Created by Matthias on 16-02-27.
  *
@@ -12,7 +14,7 @@ package com.matthias.parkingfinder;
  * - Address of ... city, country? if required then such class members should be added to this class ...
  *
  */
-public class Address
+public class Address implements Serializable
 {
 	private String streetName;
 	private int streetNumber;       // may not have it

@@ -1,11 +1,12 @@
 package com.matthias.parkingfinder;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Matthias on 16-02-27.
  */
-public class TimePeriod
+public class TimePeriod implements Serializable
 {
 	// something like this
 	private int from;

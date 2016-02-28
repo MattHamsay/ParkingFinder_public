@@ -74,9 +74,7 @@ public class ParkingListAdapter extends BaseAdapter
 			@Override
 			public void onClick(View v)
 			{
-				Intent intent = new Intent(context, ParkingSpaceDetailActivity.class);
-				Bundle bundle = new Bundle();
-				context.startActivity(intent);
+				ParkingSpaceDetailActivity.startActivity(context, datum, datum.getThumbnail());
 			}
 		});
 

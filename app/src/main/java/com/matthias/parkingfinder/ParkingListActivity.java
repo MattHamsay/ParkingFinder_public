@@ -12,8 +12,6 @@ import android.widget.TextView;
 
 import java.util.*;
 
-// TODO DECESNDING ORDER DOESNT WORK, SHOULD WORK WHEN CLICK ON CATEGORY, OR ORDER
-
 /**
  * Created by Matthias on 16-02-28.
  */
