@@ -1,5 +1,8 @@
 package com.matthias.parkingfinder;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import java.util.ArrayList;
 
 /**
@@ -9,34 +12,55 @@ public class ParkingSpace
 {
 	// constant var for parking space parkingType
 	enum ParkingType
-	{
-		STREET_PARKING, PARKADE, SURFACE_LOT;
-	}
+	{ STREET_PARKING, PARKADE, SURFACE_LOT }
 //	private final static int STREET_PARKING = 0;
 //	private final static int PARKADE        = 1;
 //	private final static int SURFACE_LOT    = 2;
 
 	// details of the parking space
-	private double cost;
+	private Bitmap thumbnail;
+	private String name;
+	private Address address;
+	private double price;
 	private Time chargingTime;          // non-charging time = 24 hours - charging time - nonParkingTime
 	private Time nonParkingTime;        // times when people are not allowed to park
-	private Address address;
+	private ParkingType parkingType;
 	private boolean hasCamera;
 	private boolean hasAttendant;
-	private ParkingType parkingType;
 
-
-	public ParkingSpace(double cost, Time chargingTime, Time nonParkingTime, Address address,
-	                    boolean hasCamera, boolean hasAttendant, ParkingType parkingType)
+	public ParkingSpace(Bitmap thumbnail, String name, Address address, double price,
+	                    Time chargingTime, Time nonParkingTime,
+	                    ParkingType parkingType, boolean hasCamera, boolean hasAttendant)
 	{
-		this.cost = cost;
+		this.thumbnail = thumbnail;
+		this.name = name;
+		this.address = address;
+		this.price = price;
 		this.chargingTime = chargingTime;
 		this.nonParkingTime = nonParkingTime;
-		this.address = address;
+		this.parkingType = parkingType;
 		this.hasCamera = hasCamera;
 		this.hasAttendant = hasAttendant;
-		this.parkingType = parkingType;
 	}
+
+	// ================================================================
+	// Getter Methods
+	// ================================================================
+
+	Bitmap getThumbnail()
+	{ return thumbnail; }
+	String getName()
+	{ return name; }
+
+	Address getAddress()
+	{ return address; }
+
+	double getPrice()
+	{ return price; }
+
+	String getPriceString()
+	{ return String.format("$%.1f / hr", getPrice()); }
+
 
 	// ================================================================
 	// Methods to check parking ParkingType
@@ -50,22 +74,4 @@ public class ParkingSpace
 
 	boolean isSurfaceLot()
 	{ return parkingType.equals(ParkingType.SURFACE_LOT); }
-
-	// ================================================================
-	// Methods for stub DB
-	// ================================================================
-
-	static ArrayList<ParkingSpace> getStubList()
-	{
-		ParkingSpace A = null;
-		ParkingSpace B = null;
-		// ...
-
-		ArrayList<ParkingSpace> list = new ArrayList<>();
-		list.add(A);
-		list.add(B);
-		// ...
-
-		return list;
-	}
 }

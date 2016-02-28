@@ -40,17 +40,6 @@ public class Time
 		return null;
 	}
 
-	// convert the distance into walking time
-	static int getWalkingTime(double km)
-	{
-		return -1;
-	}
-
-	static int getDrivingTime(double km)
-	{
-		return -1;
-	}
-
 	/**
 	 * Convert minutes to hour-minutes String representation
 	 * @param minute

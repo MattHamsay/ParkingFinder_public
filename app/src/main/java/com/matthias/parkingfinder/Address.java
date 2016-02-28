@@ -10,13 +10,14 @@ package com.matthias.parkingfinder;
  */
 public class Address
 {
-	private int streetNumber;       // may not have it
 	private String streetName;
+	private int streetNumber;       // may not have it
 	private String zipCode;
 
-	public Address(String streetName, String zipCode)
+	public Address(String streetName, int streetNumber, String zipCode)
 	{
 		this.streetName = streetName;
+		this.streetNumber = streetNumber;
 		this.zipCode = zipCode;             // R3T 2N2 => R3T2N2, not implemented as all are hard coded
 	}
 
@@ -24,13 +25,51 @@ public class Address
 	boolean hasStreetNumber()
 	{ return streetNumber > 0; }
 
+	@Override
+	public String toString()
+	{
+		if (hasStreetNumber())
+			return streetNumber + " " + streetName + " " + zipCode;
+		else
+			return streetName + " " + zipCode;
+	}
+
+	// ================================================================
+	// Methods for Comparing with Other Address
+	// ================================================================
+
 	/**
 	 *
 	 * @param another
 	 * @return distance from another Address in terms of km. Maybe use
 	 */
-	double getDistanecFrom(Address another)
+	double getDistanceFrom(Address another)
 	{
 		return -1;
 	}
+
+	String getDistanceStringFrom(Address another)
+	{ return String.format("%.1fkm", getDistanceFrom(another)); }
+
+	// convert the distance into walking time
+	double getWalkingTime(double km)
+	{
+		return -1;
+	}
+
+	String getDrivingTimeString(Address to)
+	{
+		return "-23h -1m";
+	}
+
+	double getDrivingTime(Address to)
+	{
+		return -1;
+	}
+
+	double getDrivingTime(double km)
+	{
+		return -1;
+	}
+
 }

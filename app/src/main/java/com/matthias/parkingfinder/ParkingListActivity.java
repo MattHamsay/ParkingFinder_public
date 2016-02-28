@@ -1,19 +1,35 @@
 package com.matthias.parkingfinder;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.provider.MediaStore;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by Matthias on 16-02-28.
+ */
 public class ParkingListActivity extends AppCompatActivity
 {
 	// Widgets on Layout
-	private TextView textView_sortBy;
+	private TextView            textView_sortBy;
+
+	// data for list
+	private List<ParkingSpace>  parkingListData;
+	private Address             currentUserLocation;
+
+	// constant for bundle
+	static final String         KEY_PARKING_LIST_DATA       = "PARKING_LIST_DATA";
+	static final String         KEY_CURRENT_USER_LOCATION   = "CURR_USER_LOCATION";
+
+	private final boolean       USING_STUB_DB = true;
 
 	// set of constant Strings for dialog results
 	private enum SortOption
@@ -57,7 +73,24 @@ public class ParkingListActivity extends AppCompatActivity
 			}
 		});
 
-		// initialise the list with sort by distance
+		// STUB DB SPACE
+		if (USING_STUB_DB)
+		{
+			parkingListData = getStubList();
+			currentUserLocation = new Address("currentAdd", 12, "ABCDEF");
+		}
+		else
+		{
+			// fetch data from bundle
+			parkingListData = (List<ParkingSpace>) savedInstanceState.get(KEY_PARKING_LIST_DATA);
+			currentUserLocation = (Address) savedInstanceState.get(KEY_CURRENT_USER_LOCATION);
+		}
+
+		// initialise the list
+		ListView parkingListView = (ListView) findViewById(R.id.listView_ParkingList_parkingList);
+		parkingListView.setAdapter(new ParkingListAdapter(this, parkingListData, currentUserLocation));
+
+		// sort with distance by default
 		sortListBy(SortOption.STRING_DISTANCE.toString());
 	}
 
@@ -96,5 +129,49 @@ public class ParkingListActivity extends AppCompatActivity
 	{
 		String format = "Arrange By %s ▾";
 		textView_sortBy.setText(String.format(format, sortOption));
+	}
+
+
+
+	// ================================================================
+	// Methods for stub DB
+	// ================================================================
+
+	ArrayList<ParkingSpace> getStubList()
+	{
+//		ParkingSpace A = null;
+//		ParkingSpace B = null;
+//		// ...
+//
+//		list.add(A);
+//		list.add(B);
+//		// ...
+
+//		return list;
+
+		Bitmap      thumbnail           = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_thumbnail_parkade_default);
+		String      parkingName         = "My Fake Parking";
+		String      streetName          = "Fake Street";
+		int         streetNumber        = 1;
+		String      zipCode             = "R3T 2N2";
+		double      price               = 3.5;
+		Time        chargingTime        = new Time(1, 3);
+		Time        nonParkingTime      = new Time(2, 4);
+		ParkingSpace.ParkingType type   = ParkingSpace.ParkingType.PARKADE;
+		boolean     hasCamera           = true;
+		boolean     hasAttendant        = true;
+
+		ArrayList<ParkingSpace> list = new ArrayList<>();
+
+		for (int i = 0; i < 15; i++)
+		{
+			Address address = new Address(streetName, streetNumber + i, zipCode);
+			ParkingSpace foo = new ParkingSpace(thumbnail, parkingName, address, price,
+			                                    chargingTime, nonParkingTime,
+			                                    type, hasCamera, hasAttendant);
+			list.add(foo);
+		}
+
+		return list;
 	}
 }
