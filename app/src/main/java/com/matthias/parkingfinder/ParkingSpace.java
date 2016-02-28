@@ -64,6 +64,7 @@ public class ParkingSpace
 		ArrayList<ParkingSpace> list = new ArrayList<>();
 		list.add(A);
 		list.add(B);
+		// ...
 
 		return list;
 	}
