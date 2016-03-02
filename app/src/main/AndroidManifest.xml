@@ -39,10 +39,6 @@
         </activity>
         <activity android:name=".ParkingListActivity"></activity>
         <activity android:name=".ParkingSpaceDetailActivity"></activity>
-        <activity
-            android:name=".FilterOptionsHeaderFragment"
-            android:label="@string/title_activity_filter_options_header_fragment"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
