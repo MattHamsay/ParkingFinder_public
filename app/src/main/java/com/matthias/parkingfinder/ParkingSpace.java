@@ -44,6 +44,10 @@ public class ParkingSpace implements Serializable
 	// Getter Methods
 	// ================================================================
 
+	// used for passing around the parking space and bitmap data
+	void setThumbnail(Bitmap thumbnail)
+	{ this.thumbnail = thumbnail; }
+
 	Bitmap getThumbnail()
 	{ return thumbnail; }
 

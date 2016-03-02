@@ -1,6 +1,8 @@
 package com.matthias.parkingfinder;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -10,6 +12,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 {
@@ -25,10 +30,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 				.findFragmentById(R.id.map);
 		mapFragment.getMapAsync(this);
 
+		System.out.println("DEBUG: calling startStubTestForParkingListActivity() ...");
+
 		// test ParkingListActivity
-		Intent testIntent = new Intent(getApplicationContext(), ParkingListActivity.class);
-		startActivity(testIntent);
+		startStubTestForParkingListActivity();
 	}
+
+	private void startStubTestForParkingListActivity()
+	{
+		// STUB DB SPACE
+		List<ParkingSpace> parkingSpaces = getStubList();
+		Address currentUserLocation = new Address("currentAdd", 12, "ABCDEF");
+
+		System.out.println("DEBUG: startStubTestForParkingListActivity() called:");
+		System.out.printf("DEBUG: size of list: %d, first parking name: %s\n", parkingSpaces.size(), parkingSpaces.get(0).getName());
+
+
+		ParkingListActivity.startActivity(getApplicationContext(), parkingSpaces, currentUserLocation);
+	}
+
 
 
 	/**

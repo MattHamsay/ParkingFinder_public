@@ -74,7 +74,7 @@ public class ParkingListAdapter extends BaseAdapter
 			@Override
 			public void onClick(View v)
 			{
-				ParkingSpaceDetailActivity.startActivity(context, datum, datum.getThumbnail());
+				ParkingSpaceDetailActivity.startActivity(context, datum);
 			}
 		});
 

@@ -1,7 +1,9 @@
 package com.matthias.parkingfinder;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.*;
 
@@ -82,11 +85,70 @@ public class ParkingListActivity extends AppCompatActivity
 	}
 
 
+	private final static String KEY_DATA_PARKING_LIST_SIZE = "com.matthias.parkingfinder.ParkingSpaceDetailActivity.ParkingListSize";
+	private final static String KEY_DATA_PARKING_SPACE = "com.matthias.parkingfinder.ParkingSpaceDetailActivity.ParkingData";
+	private final static String KEY_DATA_THUMBNAIL = "com.matthias.parkingfinder.ParkingSpaceDetailActivity.Thumbnail";
+	private final static String KEY_DATA_CURRENT_USER_LOCATION = "com.matthias.parkingfinder.ParkingSpaceDetailActivity.UserLocation";
+
+	static void startActivity(Context context, List<ParkingSpace> parkingSpaces, Address currentUserLocation)
+	{
+
+
+		Intent intent = new Intent(context, ParkingListActivity.class);
+		intent.putExtra(KEY_DATA_PARKING_LIST_SIZE, parkingSpaces.size());
+
+		for (int i = 0; i < parkingSpaces.size(); i++)
+		{
+			intent.putExtra(KEY_DATA_PARKING_SPACE + i, parkingSpaces.get(i));
+			intent.putExtra(KEY_DATA_THUMBNAIL + i, parkingSpaces.get(i).getThumbnail());
+		}
+
+		intent.putExtra(KEY_DATA_CURRENT_USER_LOCATION, currentUserLocation);
+
+		System.out.printf("DEBUG: startActivity() started:\n");
+		System.out.printf("DEBUG: size of list: %d, first parking name: %s\n", parkingSpaces.size(), parkingSpaces.get(0).getName());
+
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(intent);
+	}
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		System.out.println("DEBUG: onCreate() started:");
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_parking_list);
+
+		// get the data from intent
+		Intent intent = this.getIntent();
+		List<ParkingSpace> parkingSpaces = new ArrayList<>();
+
+		System.out.println("DEBUG: onCreate(): fetching list size to receive ... ");
+
+		int listSizeToReceive = intent.getIntExtra(KEY_DATA_PARKING_LIST_SIZE, -1);
+
+		System.out.println("DEBUG: onCreate(): fetching list ... ");
+
+		// data is to be received
+		for (int i = 0; i < listSizeToReceive; i++)
+		{
+			ParkingSpace parkingSpace = (ParkingSpace) intent.getSerializableExtra(KEY_DATA_PARKING_SPACE + i);
+			Bitmap thumbnail = intent.getParcelableExtra(KEY_DATA_THUMBNAIL + i);
+			parkingSpace.setThumbnail(thumbnail);
+			parkingSpaces.add(parkingSpace);
+		}
+
+		System.out.println("DEBUG: onCreate() fetching user address ... ");
+
+		currentUserLocation = (Address) intent.getSerializableExtra(KEY_DATA_CURRENT_USER_LOCATION);
+
+
+		System.out.println("DEBUG: onCreate() data fetching process done:");
+		System.out.printf("DEBUG: listSizeToReceive: %d\n", listSizeToReceive);
+		System.out.printf("DEBUG: size of list: %d, first parking name: %s\n", parkingSpaces.size(), parkingSpaces.get(0).getName());
+
 
 		// find buttons
 		textView_sortByCategory = (TextView) findViewById(R.id.textView_ParkingList_arrangeBy);
@@ -111,21 +173,7 @@ public class ParkingListActivity extends AppCompatActivity
 			}
 		});
 
-		// STUB DB SPACE
-		if (USING_STUB_DB)
-		{
-			parkingListData = getStubList();
-			currentUserLocation = new Address("currentAdd", 12, "ABCDEF");
-		}
-		else
-		{
-			// fetch data from bundle
-			parkingListData = (List<ParkingSpace>) savedInstanceState.get(KEY_PARKING_LIST_DATA);
-			currentUserLocation = (Address) savedInstanceState.get(KEY_CURRENT_USER_LOCATION);
-		}
-
-		// initialise the l
-		// ist
+		// initialise the list
 		parkingListView = (ListView) findViewById(R.id.listView_ParkingList_parkingList);
 		parkingListView.setAdapter(new ParkingListAdapter(this, parkingListData, currentUserLocation));
 
@@ -256,42 +304,4 @@ public class ParkingListActivity extends AppCompatActivity
 	// Methods for stub DB
 	// ================================================================
 
-	ArrayList<ParkingSpace> getStubList()
-	{
-//		ParkingSpace A = null;
-//		ParkingSpace B = null;
-//		// ...
-//
-//		list.add(A);
-//		list.add(B);
-//		// ...
-
-//		return list;
-
-		Bitmap      thumbnail           = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_thumbnail_parkade_default);
-		String      parkingName         = "My Fake Parking";
-		String      streetName          = "Fake Street";
-		int         streetNumber        = 1;
-		String      zipCode             = "R3T 2N2";
-		TimePeriod chargingTimePeriod = new TimePeriod(1, 3);
-		TimePeriod nonParkingTimePeriod = new TimePeriod(2, 4);
-		ParkingSpace.ParkingType type   = ParkingSpace.ParkingType.PARKADE;
-		boolean     hasCamera           = true;
-		boolean     hasAttendant        = true;
-
-		ArrayList<ParkingSpace> list = new ArrayList<>();
-
-		for (int i = 0; i < 15; i++)
-		{
-			Address address = new Address(streetName, streetNumber + i, zipCode);
-			double  price   = 20.5 - i;
-
-			ParkingSpace foo = new ParkingSpace(thumbnail, parkingName, address, price,
-			                                    chargingTimePeriod, nonParkingTimePeriod,
-			                                    type, hasCamera, hasAttendant);
-			list.add(foo);
-		}
-
-		return list;
-	}
 }
