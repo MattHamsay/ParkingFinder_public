@@ -30,8 +30,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 				.findFragmentById(R.id.map);
 		mapFragment.getMapAsync(this);
 
-		System.out.println("DEBUG: calling startStubTestForParkingListActivity() ...");
-
 		// test ParkingListActivity
 		startStubTestForParkingListActivity();
 	}
@@ -39,14 +37,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 	private void startStubTestForParkingListActivity()
 	{
 		// STUB DB SPACE
-		List<ParkingSpace> parkingSpaces = getStubList();
+//		List<ParkingSpace> parkingSpaces = getStubList();
+		boolean isStub = true;
 		Address currentUserLocation = new Address("currentAdd", 12, "ABCDEF");
+		FilterOption filterOption = new FilterOption(isStub, currentUserLocation);
 
 		System.out.println("DEBUG: startStubTestForParkingListActivity() called:");
-		System.out.printf("DEBUG: size of list: %d, first parking name: %s\n", parkingSpaces.size(), parkingSpaces.get(0).getName());
+//		System.out.printf("DEBUG: size of list: %d, first parking name: %s\n", parkingSpaces.size(), parkingSpaces.get(0).getName());
 
-
-		ParkingListActivity.startActivity(getApplicationContext(), parkingSpaces, currentUserLocation);
+		ParkingListActivity.startActivity(getApplicationContext(), filterOption);
 	}
 
 

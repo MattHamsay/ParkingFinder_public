@@ -85,31 +85,33 @@ public class ParkingListActivity extends AppCompatActivity
 	}
 
 
-	private final static String KEY_DATA_PARKING_LIST_SIZE = "com.matthias.parkingfinder.ParkingSpaceDetailActivity.ParkingListSize";
-	private final static String KEY_DATA_PARKING_SPACE = "com.matthias.parkingfinder.ParkingSpaceDetailActivity.ParkingData";
-	private final static String KEY_DATA_THUMBNAIL = "com.matthias.parkingfinder.ParkingSpaceDetailActivity.Thumbnail";
+	private final static String KEY_DATA_FILTER_OPTION = "com.matthias.parkingfinder.ParkingSpaceDetailActivity.FilterOption";
+//	private final static String KEY_DATA_PARKING_LIST_SIZE = "com.matthias.parkingfinder.ParkingSpaceDetailActivity.ParkingListSize";
+//	private final static String KEY_DATA_PARKING_SPACE = "com.matthias.parkingfinder.ParkingSpaceDetailActivity.ParkingData";
+//	private final static String KEY_DATA_THUMBNAIL = "com.matthias.parkingfinder.ParkingSpaceDetailActivity.Thumbnail";
 	private final static String KEY_DATA_CURRENT_USER_LOCATION = "com.matthias.parkingfinder.ParkingSpaceDetailActivity.UserLocation";
 
-	static void startActivity(Context context, List<ParkingSpace> parkingSpaces, Address currentUserLocation)
+	static void startActivity(Context context, FilterOption filterOption)
 	{
 
 
 		Intent intent = new Intent(context, ParkingListActivity.class);
-		intent.putExtra(KEY_DATA_PARKING_LIST_SIZE, parkingSpaces.size());
-
-		for (int i = 0; i < parkingSpaces.size(); i++)
-		{
-			intent.putExtra(KEY_DATA_PARKING_SPACE + i, parkingSpaces.get(i));
-			intent.putExtra(KEY_DATA_THUMBNAIL + i, parkingSpaces.get(i).getThumbnail());
-		}
-
-		intent.putExtra(KEY_DATA_CURRENT_USER_LOCATION, currentUserLocation);
-
-		System.out.printf("DEBUG: startActivity() started:\n");
-		System.out.printf("DEBUG: size of list: %d, first parking name: %s\n", parkingSpaces.size(), parkingSpaces.get(0).getName());
-
+		intent.putExtra(KEY_DATA_FILTER_OPTION, filterOption);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
 		context.startActivity(intent);
+
+		//
+//		intent.putExtra(KEY_DATA_PARKING_LIST_SIZE, parkingSpaces.size());
+//
+//		for (int i = 0; i < parkingSpaces.size(); i++)
+//		{
+//			intent.putExtra(KEY_DATA_PARKING_SPACE + i, parkingSpaces.get(i));
+//			intent.putExtra(KEY_DATA_THUMBNAIL + i, parkingSpaces.get(i).getThumbnail());
+//		}
+
+
+//		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 	}
 
 
@@ -123,31 +125,45 @@ public class ParkingListActivity extends AppCompatActivity
 
 		// get the data from intent
 		Intent intent = this.getIntent();
-		List<ParkingSpace> parkingSpaces = new ArrayList<>();
+		FilterOption filterOption = (FilterOption) intent.getSerializableExtra(KEY_DATA_FILTER_OPTION);
+		currentUserLocation = filterOption.getCurrentUserLocation();
 
-		System.out.println("DEBUG: onCreate(): fetching list size to receive ... ");
-
-		int listSizeToReceive = intent.getIntExtra(KEY_DATA_PARKING_LIST_SIZE, -1);
-
-		System.out.println("DEBUG: onCreate(): fetching list ... ");
-
-		// data is to be received
-		for (int i = 0; i < listSizeToReceive; i++)
+		if (filterOption.isStub())
 		{
-			ParkingSpace parkingSpace = (ParkingSpace) intent.getSerializableExtra(KEY_DATA_PARKING_SPACE + i);
-			Bitmap thumbnail = intent.getParcelableExtra(KEY_DATA_THUMBNAIL + i);
-			parkingSpace.setThumbnail(thumbnail);
-			parkingSpaces.add(parkingSpace);
+			Database db = new Database();
+			parkingListData = db.getStubList(getApplicationContext());
+		}
+		else
+		{
+			// real work ...
+			Database db = new Database();
+			parkingListData = db.getFilteredList(getApplicationContext(), filterOption);
 		}
 
-		System.out.println("DEBUG: onCreate() fetching user address ... ");
 
-		currentUserLocation = (Address) intent.getSerializableExtra(KEY_DATA_CURRENT_USER_LOCATION);
-
-
-		System.out.println("DEBUG: onCreate() data fetching process done:");
-		System.out.printf("DEBUG: listSizeToReceive: %d\n", listSizeToReceive);
-		System.out.printf("DEBUG: size of list: %d, first parking name: %s\n", parkingSpaces.size(), parkingSpaces.get(0).getName());
+//		System.out.println("DEBUG: onCreate(): fetching list size to receive ... ");
+//
+//		int listSizeToReceive = intent.getIntExtra(KEY_DATA_PARKING_LIST_SIZE, -1);
+//
+//		System.out.println("DEBUG: onCreate(): fetching list ... ");
+//
+//		// data is to be received
+//		for (int i = 0; i < listSizeToReceive; i++)
+//		{
+//			ParkingSpace parkingSpace = (ParkingSpace) intent.getSerializableExtra(KEY_DATA_PARKING_SPACE + i);
+//			Bitmap thumbnail = intent.getParcelableExtra(KEY_DATA_THUMBNAIL + i);
+//			parkingSpace.setThumbnail(thumbnail);
+//			parkingSpaces.add(parkingSpace);
+//		}
+//
+//		System.out.println("DEBUG: onCreate() fetching user address ... ");
+//
+//		currentUserLocation = (Address) intent.getSerializableExtra(KEY_DATA_CURRENT_USER_LOCATION);
+//
+//
+//		System.out.println("DEBUG: onCreate() data fetching process done:");
+//		System.out.printf("DEBUG: listSizeToReceive: %d\n", listSizeToReceive);
+//		System.out.printf("DEBUG: size of list: %d, first parking name: %s\n", parkingSpaces.size(), parkingSpaces.get(0).getName());
 
 
 		// find buttons
