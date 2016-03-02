@@ -44,7 +44,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 	public void onMapReady(GoogleMap googleMap)
 	{
 		mMap = googleMap;
-        final LatLng U_OF_M = new LatLng(49.808, -97.137);
+		final LatLng U_OF_M = new LatLng(49.808, -97.137);
 
         //Move camera to testing location
         mMap.moveCamera(CameraUpdateFactory.newLatLng(U_OF_M));
