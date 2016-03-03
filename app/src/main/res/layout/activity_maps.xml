@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
-        sothree:umanoPanelHeight="35dp"
+        sothree:umanoPanelHeight="40dp"
         sothree:umanoShadowHeight="4dp">
 
         <fragment
@@ -23,13 +23,27 @@
             tools:context="com.matthias.parkingfinder.MapsActivity"
             android:name="com.google.android.gms.maps.SupportMapFragment"/>
 
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center|top"
-            android:text="Filter Slide"
-            android:textSize="16sp" />
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:clickable="true"
+            android:focusable="false"
+            android:id="@+id/dragView">
+
+            <Button
+                android:id="@+id/follow"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textSize="14sp"
+                android:text="$"
+                android:textAlignment="center"
+                android:gravity="center|right"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"/>
+
+        </LinearLayout>
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 </LinearLayout>
 
