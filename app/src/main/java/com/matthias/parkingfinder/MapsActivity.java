@@ -11,6 +11,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -62,6 +63,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 	@Override
 	public void onMapReady(GoogleMap googleMap)
 	{
+		Marker umLotUMarker;
+		Marker umLotQMarker;
 		mMap = googleMap;
 		final LatLng U_OF_M = new LatLng(49.808, -97.137);
 
@@ -70,10 +73,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 		// University Of Manitoba U Lot
 		LatLng umLotU = new LatLng(49.806, -97.141);
-		mMap.addMarker(new MarkerOptions().position(umLotU).title("University Of Manitoba U Lot").snippet("Reserved 6am-4:30pm"));
+		umLotUMarker = mMap.addMarker(new MarkerOptions().position(umLotU).title("University Of Manitoba U Lot").snippet("Reserved 6am-4:30pm"));
 
         // University Of Manitoba Q Lot
 		LatLng umLotQ = new LatLng(49.812, -97.139);
-		mMap.addMarker(new MarkerOptions().position(umLotQ).title("University Of Manitoba Q Lot").snippet("Reserved 6am-4:30pm"));
+		umLotQMarker = mMap.addMarker(new MarkerOptions().position(umLotQ).title("University Of Manitoba Q Lot").snippet("Reserved 6am-4:30pm"));
 	}
 }

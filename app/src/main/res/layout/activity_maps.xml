@@ -10,8 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
-        sothree:umanoPanelHeight="40dp"
-        sothree:umanoShadowHeight="4dp">
+        sothree:umanoPanelHeight="55dp"
+        sothree:umanoShadowHeight="4dp"
+        sothree:umanoParallaxOffset="100dp"
+        sothree:umanoDragView="@+id/dragView"
+        sothree:umanoOverlay="true"
+        sothree:umanoScrollableView="@+id/list">
 
         <fragment
             xmlns:tools="http://schemas.android.com/tools"
@@ -27,19 +31,51 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#ffffff"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:clickable="true"
             android:focusable="false"
             android:id="@+id/dragView">
 
             <Button
-                android:id="@+id/follow"
+                android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:textSize="14sp"
                 android:text="$"
                 android:textAlignment="center"
                 android:gravity="center|right"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"/>
+            <Button
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textSize="14sp"
+                android:text="Time"
+                android:textAlignment="center"
+                android:gravity="center|start"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"/>
+
+            <Button
+                android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textSize="14sp"
+            android:text="-"
+            android:textAlignment="center"
+            android:gravity="center|start"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"/>
+
+            <Button
+                android:id="@+id/security"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textSize="14sp"
+                android:text="-"
+                android:textAlignment="center"
+                android:gravity="center|start"
                 android:paddingRight="10dp"
                 android:paddingLeft="10dp"/>
 
