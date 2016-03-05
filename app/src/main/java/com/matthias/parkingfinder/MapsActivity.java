@@ -66,6 +66,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		Marker umLotUMarker;
 		Marker umLotQMarker;
 		mMap = googleMap;
+		ParkingSpace Ulot = new ParkingSpace();
+
 		final LatLng U_OF_M = new LatLng(49.808, -97.137);
 
         //Move camera to testing location

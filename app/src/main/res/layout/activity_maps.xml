@@ -12,10 +12,7 @@
         android:gravity="bottom"
         sothree:umanoPanelHeight="55dp"
         sothree:umanoShadowHeight="4dp"
-        sothree:umanoParallaxOffset="100dp"
-        sothree:umanoDragView="@+id/dragView"
-        sothree:umanoOverlay="true"
-        sothree:umanoScrollableView="@+id/list">
+        sothree:umanoOverlay="true">
 
         <fragment
             xmlns:tools="http://schemas.android.com/tools"
@@ -30,55 +27,62 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ffffff"
-            android:orientation="horizontal"
+            android:background="#80000000"
+            android:orientation="vertical"
             android:clickable="true"
             android:focusable="false"
             android:id="@+id/dragView">
 
-            <Button
-                android:id="@+id/price"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:textSize="14sp"
-                android:text="$"
-                android:textAlignment="center"
-                android:gravity="center|right"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"/>
-            <Button
-                android:id="@+id/time"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:textSize="14sp"
-                android:text="Time"
-                android:textAlignment="center"
-                android:gravity="center|start"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:id="@+id/filterOptions">
 
-            <Button
-                android:id="@+id/distance"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:textSize="14sp"
-            android:text="-"
-            android:textAlignment="center"
-            android:gravity="center|start"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"/>
+                <Button
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textSize="14sp"
+                    android:text="$"
+                    android:textAlignment="center"
+                    android:gravity="center|right"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"/>
+                <Button
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textSize="14sp"
+                    android:text="Time"
+                    android:textAlignment="center"
+                    android:gravity="center|start"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"/>
 
-            <Button
-                android:id="@+id/security"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:textSize="14sp"
-                android:text="-"
-                android:textAlignment="center"
-                android:gravity="center|start"
-                android:paddingRight="10dp"
-                android:paddingLeft="10dp"/>
+                <Button
+                    android:id="@+id/distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textSize="14sp"
+                    android:text="Distance"
+                    android:textAlignment="center"
+                    android:gravity="center|start"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"/>
 
+                <Button
+                    android:id="@+id/Type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textSize="14sp"
+                    android:text="Type"
+                    android:textAlignment="center"
+                    android:gravity="center|start"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"/>
+            </LinearLayout>
+            <!-- END OF ROWS -->
         </LinearLayout>
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 </LinearLayout>

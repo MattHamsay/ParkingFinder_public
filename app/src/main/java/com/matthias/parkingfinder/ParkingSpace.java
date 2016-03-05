@@ -2,6 +2,8 @@ package com.matthias.parkingfinder;
 
 import android.graphics.Bitmap;
 
+import com.google.android.gms.maps.model.Marker;
+
 import java.io.Serializable;
 import java.util.Comparator;
 
@@ -24,6 +26,11 @@ public class ParkingSpace implements Serializable
 	private ParkingType parkingType;
 	private boolean hasCamera;
 	private boolean hasAttendant;
+	private Marker marker;							//Used to toggle on/off marks on the map for filter options.
+
+
+
+	public ParkingSpace(){}							//Null Constructor
 
 	public ParkingSpace(Bitmap thumbnail, String name, Address address, double price,
 	                    TimePeriod chargingTimePeriod, TimePeriod nonParkingTimePeriod,
@@ -76,7 +83,6 @@ public class ParkingSpace implements Serializable
 
 	boolean isSurfaceLot()
 	{ return parkingType.equals(ParkingType.SURFACE_LOT); }
-
 
 
 	public static class Comparators
