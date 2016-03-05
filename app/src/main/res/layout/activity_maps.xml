@@ -196,16 +196,17 @@
                     android:textColor="#FFFFFF"
                     android:onClick="onCheckboxClicked"/>
 
-                <CheckBox android:id="@+id/checkbox_packade"
+                <CheckBox android:id="@+id/checkbox_parkade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Packade"
+                    android:text="Parkade"
                     android:textColor="#FFFFFF"
                     android:onClick="onCheckboxClicked"/>
             </LinearLayout>
             <!-- END OF TYPE FILTER ROW -->
-            <!-- END OF ROWS -->
+
         </LinearLayout>
+        <!-- END OF MENU -->
     </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 </LinearLayout>
 
