@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_weight="1"
             android:id="@+id/map"
             tools:context="com.matthias.parkingfinder.MapsActivity"
             android:name="com.google.android.gms.maps.SupportMapFragment"/>
@@ -31,15 +30,13 @@
             android:orientation="vertical"
             android:clickable="true"
             android:focusable="false"
-            android:layout_weight="0"
             android:id="@+id/dragView">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="68dp"
                 android:orientation="horizontal"
-                android:id="@+id/filterOptions"
-                android:layout_weight="0.5">
+                android:id="@+id/filterOptions">
 
                 <Button
                     android:id="@+id/price"
@@ -68,7 +65,7 @@
                     android:paddingLeft="10dp"/>
 
                 <Button
-                    android:id="@+id/Type"
+                    android:id="@+id/type"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:textSize="14sp"
@@ -77,16 +74,96 @@
                     android:paddingLeft="10dp"/>
             </LinearLayout>
             <!--END OF FILTER ROW -->
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="horizontal"
-                android:layout_weight="0.5">
+                android:layout_height="68dp"
+                android:orientation="horizontal">
 
-                <Button
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:id="@+id/button1"/>
+                    android:layout_height="wrap_content"
+                    android:text="Price:"
+                    android:textSize="20sp"
+                    android:textColor="#FFFFFF"
+                    android:paddingLeft="10dp"/>
+
+                <EditText
+                    android:id="@+id/pricehr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Price/hr"
+                    android:textColorHint="#FFFFFF"
+                    android:textColor="#FFFFFF"
+                    android:inputType="number"
+                    android:paddingLeft="30dp"/>
+
+                <EditText
+                    android:id="@+id/flatrate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Flat Rate"
+                    android:textColorHint="#FFFFFF"
+                    android:textColor="#FFFFFF"
+                    android:inputType="number"
+                    android:paddingLeft="30dp"/>
+
+            </LinearLayout>
+            <!-- END OF PRICE FILTER ROW -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time:"
+                    android:textSize="20sp"
+                    android:textColor="#FFFFFF"
+                    android:paddingLeft="10dp"/>
+
+                <EditText
+                    android:id="@+id/starttime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Start Time"
+                    android:textColorHint="#FFFFFF"
+                    android:textColor="#FFFFFF"
+                    android:inputType="number"
+                    android:paddingLeft="30dp"/>
+
+                <EditText
+                    android:id="@+id/duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Duration"
+                    android:textColorHint="#FFFFFF"
+                    android:textColor="#FFFFFF"
+                    android:inputType="number"
+                    android:paddingLeft="30dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="68dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Distance:"
+                    android:textSize="20sp"
+                    android:textColor="#FFFFFF"
+                    android:paddingLeft="10dp"/>
+
+                <SeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/distanceSeek"
+                    android:layout_gravity="center_horizontal" />0dp"/>
             </LinearLayout>
             <!-- END OF ROWS -->
         </LinearLayout>

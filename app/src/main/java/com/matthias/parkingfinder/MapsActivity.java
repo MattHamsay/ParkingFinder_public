@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.text.format.*;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,7 +21,6 @@ import java.util.List;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 {
 	private GoogleMap mMap;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
