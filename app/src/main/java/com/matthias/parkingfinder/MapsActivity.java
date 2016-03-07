@@ -91,25 +91,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		switch (view.getId()) {
 			case R.id.checkbox_lot:
 				if (checked) {
+					// check if parkingspot is a lot if it is leave it on other-wise turn offmarker
 				}
-				// Put some meat on the sandwich
 				else {
+					//for each item turn on visabilty
 				}
-				// Remove the meat
 				break;
 			case R.id.checkbox_street:
 				if (checked) {
+					// check if parkingspot is street if it is leave it on other-wise turn off marker
 				}
-				// Cheese me
 				else {
+					//Undo the change
 				}
-				// I'm lactose intolerant
 				break;
 			case R.id.checkbox_parkade:
 				if (checked) {
 					for(int i = 0; i <parkingspots.getStubList(getApplicationContext(), mMap).size(); i++ ){
 							parkingspots.getStubList(getApplicationContext(), mMap).get(i).setMarkerFalse();
 							System.out.println("TEST");
+					//	TODO: NOT TURNING OFF MARKERS NEED TO FIX
 					}
 				} else {
 				}

@@ -20,6 +20,10 @@ public class Database
 	// Methods for stub DB
 	// ================================================================
 
+	public Database()
+	{
+
+	}
 	public static ArrayList<ParkingSpace> getStubList(Context context, GoogleMap gMap)
 	{
 		Bitmap      thumbnail           = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_thumbnail_parkade_default);
