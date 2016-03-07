@@ -131,7 +131,7 @@ public class ParkingListActivity extends AppCompatActivity
 		if (filterOption.isStub())
 		{
 			Database db = new Database();
-			parkingListData = db.getStubList(getApplicationContext());
+			parkingListData = db.getStubList(getApplicationContext(), MapsActivity.getMap());
 		}
 		else
 		{

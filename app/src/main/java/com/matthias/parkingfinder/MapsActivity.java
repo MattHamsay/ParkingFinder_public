@@ -21,7 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-	private GoogleMap mMap;
+	private static GoogleMap mMap;
+	private  Database parkingspots = new Database();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,23 +65,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		Marker umLotUMarker;
 		Marker umLotQMarker;
 		mMap = googleMap;
-		ParkingSpace Ulot = new ParkingSpace();
-
 		final LatLng U_OF_M = new LatLng(49.808, -97.137);
-
+		ArrayList<ParkingSpace> parkingSpaces =  parkingspots.getStubList(getApplicationContext(), mMap);
 		//Move camera to testing location
 		mMap.moveCamera(CameraUpdateFactory.newLatLng(U_OF_M));
 
-		// University Of Manitoba U Lot
-		LatLng umLotU = new LatLng(49.806, -97.141);
-		umLotUMarker = mMap.addMarker(new MarkerOptions().position(umLotU).title("University Of Manitoba U Lot").snippet("Reserved 6am-4:30pm"));
-
-		// University Of Manitoba Q Lot
-		LatLng umLotQ = new LatLng(49.812, -97.139);
-		umLotQMarker = mMap.addMarker(new MarkerOptions().position(umLotQ).title("University Of Manitoba Q Lot").snippet("Reserved 6am-4:30pm"));
+		// On map creation sets all markers in database to true;
+		for(int i = 0; i < parkingSpaces.size(); i++) {
+			parkingSpaces.get(i).setMarkerTrue();
+		}
 	}
 
-
+	public static GoogleMap getMap()
+	{
+		return mMap;
+	}
 	/*
 	 CHECK BOX FILTER CODE
 	 */

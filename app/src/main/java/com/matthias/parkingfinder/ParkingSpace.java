@@ -34,7 +34,7 @@ public class ParkingSpace implements Serializable
 
 	public ParkingSpace(Bitmap thumbnail, String name, Address address, double price,
 	                    TimePeriod chargingTimePeriod, TimePeriod nonParkingTimePeriod,
-	                    ParkingType parkingType, boolean hasCamera, boolean hasAttendant)
+	                    ParkingType parkingType, boolean hasCamera, boolean hasAttendant, Marker marker)
 	{
 		this.thumbnail = thumbnail;
 		this.name = name;
@@ -45,6 +45,7 @@ public class ParkingSpace implements Serializable
 		this.parkingType = parkingType;
 		this.hasCamera = hasCamera;
 		this.hasAttendant = hasAttendant;
+		this.marker = marker;
 	}
 
 	// ================================================================
@@ -70,7 +71,10 @@ public class ParkingSpace implements Serializable
 	String getPriceString()
 	{ return String.format("$%.1f / hr", getPrice()); }
 
-
+	void setMarkerFalse()
+	{ this.marker.setVisible(false);}
+	void setMarkerTrue()
+	{ this.marker.setVisible(true);}
 	// ================================================================
 	// Methods to check parking ParkingType
 	// ================================================================
