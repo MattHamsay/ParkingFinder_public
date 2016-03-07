@@ -72,7 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 		// On map creation sets all markers in database to true;
 		for(int i = 0; i < parkingSpaces.size(); i++) {
-			parkingSpaces.get(i).setMarkerTrue();
+			parkingspots.getStubList(getApplicationContext(), mMap).get(i).setMarkerTrue();
 		}
 	}
 
@@ -107,6 +107,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 				break;
 			case R.id.checkbox_parkade:
 				if (checked) {
+					for(int i = 0; i <parkingspots.getStubList(getApplicationContext(), mMap).size(); i++ ){
+							parkingspots.getStubList(getApplicationContext(), mMap).get(i).setMarkerFalse();
+							System.out.println("TEST");
+					}
 				} else {
 				}
 				break;
