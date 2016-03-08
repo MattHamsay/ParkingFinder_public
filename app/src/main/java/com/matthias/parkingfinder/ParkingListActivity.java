@@ -273,36 +273,7 @@ public class ParkingListActivity extends AppCompatActivity
 	}
 
 	private void sortListByDistance()
-	{
-		List<ParkingSpace> sorted   = new ArrayList<>();
-		List<ParkingSpace> unsorted = new ArrayList<>(parkingListData);
-
-		List<Time> sortGuide = new ArrayList<>();
-
-		for (ParkingSpace parkingSpace : unsorted)
-			sortGuide.add(GoogleMapAPI.getDrivingTimeBetween(currentUserLocation, parkingSpace.getAddress()));
-
-		Collections.sort(sortGuide, Time.Comparators.TOTAL_MINUTES);
-
-		for (ParkingSpace parkingSpace : unsorted)
-		{
-			Time distanceInTime = GoogleMapAPI.getDrivingTimeBetween(currentUserLocation, parkingSpace.getAddress());
-
-			boolean processing = true;
-			for (int i = 0; i < sortGuide.size() && processing; i++)
-			{
-				if (distanceInTime.equals(sortGuide.get(i)))
-				{
-					processing = false;
-					sortGuide.remove(i);                // this marker is consumed
-//					unsorted.remove(parkingSpace);      // this item is processed
-					sorted.add(parkingSpace);           // add removed item to sorted list
-				}
-			}
-		}
-
-		parkingListData = sorted;
-	}
+	{ Collections.sort(parkingListData, ParkingSpace.Comparators.DISTANCE); }
 
 	private void sortListByPrice()
 	{ Collections.sort(parkingListData, ParkingSpace.Comparators.PRICE); }

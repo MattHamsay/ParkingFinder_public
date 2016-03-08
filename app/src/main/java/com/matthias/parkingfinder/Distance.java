@@ -4,6 +4,13 @@ import java.io.Serializable;
 
 /**
  * Created by Matthias on 16-03-07.
+ *
+ * This class is a dummy class for prototype.
+ * This calculates the distance in KM and Time by predefined values.
+ * The predefined values are taken from Google Map, with distance from each location to EITC building.
+ *
+ * This class is contained within class Address to keep structure of calls.
+ *
  */
 public class Distance implements Serializable
 {
@@ -37,11 +44,6 @@ public class Distance implements Serializable
 	{
 		return kilometer + (meter / 1000.0);      // 1 + 400 = 1.4 km
 
-	}
-
-	public int getMeter()
-	{
-		return meter;
 	}
 
 	public Time getDistanceInTime()

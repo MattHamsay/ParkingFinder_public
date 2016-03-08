@@ -106,5 +106,21 @@ public class ParkingSpace implements Serializable
 					return -1;
 			}
 		};
+
+		public static Comparator<ParkingSpace> DISTANCE = new Comparator<ParkingSpace>()
+		{
+			@Override
+			public int compare(ParkingSpace lhs, ParkingSpace rhs)
+			{
+				double diff = lhs.getAddress().getDistance().getKilometer() - rhs.getAddress().getDistance().getKilometer();
+
+				if (diff > 0)
+					return 1;
+				else if (diff == 0)
+					return 0;
+				else
+					return -1;
+			}
+		};
 	}
 }
