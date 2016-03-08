@@ -11,12 +11,13 @@ public class GoogleMapAPI
 
 	static double getDistanceInKmBetween(Address from, Address to)
 	{
-		return -1;
+		// is faking, based on the predefined values
+		return to.getDistance().getKilometer();
 	}
 
 	static Time getDrivingTimeBetween(Address from, Address to)
 	{
-		return new Time(-23, -1);
-
+		// is faking, based on the predefined values
+		return to.getDistance().getDistanceInTime();
 	}
 }

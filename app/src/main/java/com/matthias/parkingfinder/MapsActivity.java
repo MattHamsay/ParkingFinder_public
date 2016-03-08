@@ -41,7 +41,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		// STUB DB SPACE
 //		List<ParkingSpace> parkingSpaces = getStubList();
 		boolean isStub = true;
-		Address currentUserLocation = new Address("currentAdd", 12, "ABCDEF");
+		Address currentUserLocation = new Address("currentAdd", 12, "ABCDEF", new Distance());
 		FilterOption filterOption = new FilterOption(isStub, currentUserLocation);
 
 		System.out.println("DEBUG: startStubTestForParkingListActivity() called:");

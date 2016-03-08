@@ -26,7 +26,7 @@ public class ParkingSpace implements Serializable
 	private ParkingType parkingType;
 	private boolean hasCamera;
 	private boolean hasAttendant;
-	private Marker marker;							//Used to toggle on/off marks on the map for filter options.
+	private transient Marker marker;				//Used to toggle on/off marks on the map for filter options.
 
 
 

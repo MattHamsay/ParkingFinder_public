@@ -19,12 +19,14 @@ public class Address implements Serializable
 	private String streetName;
 	private int streetNumber;       // may not have it
 	private String zipCode;
+	private Distance distance;
 
-	public Address(String streetName, int streetNumber, String zipCode)
+	public Address(String streetName, int streetNumber, String zipCode, Distance fakeDistance)
 	{
 		this.streetName = streetName;
 		this.streetNumber = streetNumber;
 		this.zipCode = zipCode;             // R3T 2N2 => R3T2N2, not implemented as all are hard coded
+		this.distance = fakeDistance;
 	}
 
 	// some Address may not have street number
@@ -60,4 +62,8 @@ public class Address implements Serializable
 	Time getDrivingTime(Address to)
 	{ return GoogleMapAPI.getDrivingTimeBetween(this, to); }
 
+	// now it's predefined
+	// in real version, this should be done by google api
+	Distance getDistance()
+	{ return distance; }
 }

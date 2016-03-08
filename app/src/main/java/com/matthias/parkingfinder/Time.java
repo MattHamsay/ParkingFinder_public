@@ -1,11 +1,13 @@
 package com.matthias.parkingfinder;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  * Created by Matthias on 16-02-28.
  */
-public class Time
+public class Time implements Serializable
+
 {
 	private int hour;
 	private int min;
