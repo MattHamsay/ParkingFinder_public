@@ -69,9 +69,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:textSize="14sp"
-                    android:text="Type"
+                    android:text="List"
                     android:paddingRight="10dp"
-                    android:paddingLeft="10dp"/>
+                    android:paddingLeft="10dp"
+                    android:onClick = "List"/>
             </LinearLayout>
             <!--END OF FILTER ROW -->
 

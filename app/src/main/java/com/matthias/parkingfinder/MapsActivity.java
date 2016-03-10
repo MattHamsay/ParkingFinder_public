@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.text.format.*;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -34,7 +35,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		mapFragment.getMapAsync(this);
 
 		// test ParkingListActivity
-		startStubTestForParkingListActivity();
+		final Button button = (Button) findViewById(R.id.type);
+		button.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				onClickList(v);
+			}
+		});
 	}
 
 	private void startStubTestForParkingListActivity() {
@@ -123,5 +129,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 				break;
 			// TODO: Add in code to send to filters
 		}
+	}
+
+	public void onClickList(View view)
+	{
+		startStubTestForParkingListActivity();
 	}
 }//close map activity
