@@ -66,14 +66,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		Marker umLotQMarker;
 		mMap = googleMap;
 		final LatLng U_OF_M = new LatLng(49.808, -97.137);
-		ArrayList<ParkingSpace> parkingSpaces =  parkingspots.getStubList(getApplicationContext(), mMap);
+		final ArrayList<ParkingSpace> parkingSpaces =  parkingspots.getStubList(getApplicationContext(), mMap);
 		//Move camera to testing location
 		mMap.moveCamera(CameraUpdateFactory.newLatLng(U_OF_M));
 
-		// On map creation sets all markers in database to true;
-		for(int i = 0; i < parkingSpaces.size(); i++) {
-			parkingspots.getStubList(getApplicationContext(), mMap).get(i).setMarkerTrue();
-		}
+		CheckBox checkBox = (CheckBox) findViewById(R.id.checkbox_parkade);
+		checkBox.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v)
+			{
+				onCheckboxClicked(v, parkingSpaces);
+			}
+		});
+
 	}
 
 	public static GoogleMap getMap()
@@ -83,7 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 	/*
 	 CHECK BOX FILTER CODE
 	 */
-	public void onCheckboxClicked(View view) {
+	public void onCheckboxClicked(View view, ArrayList<ParkingSpace> list) {
 		// Is the view now checked?
 		boolean checked = ((CheckBox) view).isChecked();
 
@@ -107,15 +112,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 				break;
 			case R.id.checkbox_parkade:
 				if (checked) {
-					for(int i = 0; i <parkingspots.getStubList(getApplicationContext(), mMap).size(); i++ ){
-							parkingspots.getStubList(getApplicationContext(), mMap).get(i).setMarkerFalse();
+					for(int i = 0; i <list.size(); i++ ){
+							list.get(i).setMarkerFalse();
 							System.out.println("TEST");
 					//	TODO: NOT TURNING OFF MARKERS NEED TO FIX
 					}
+
 				} else {
 				}
 				break;
 			// TODO: Add in code to send to filters
 		}
 	}
-}
+}//close map activity
