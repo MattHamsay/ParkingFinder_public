@@ -91,6 +91,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 	{
 		return mMap;
 	}
+
 	/*
 	 CHECK BOX FILTER CODE
 	 */
@@ -102,29 +103,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		switch (view.getId()) {
 			case R.id.checkbox_lot:
 				if (checked) {
-					// check if parkingspot is a lot if it is leave it on other-wise turn offmarker
-				}
-				else {
-					//for each item turn on visabilty
+					for(int i = 0; i <list.size(); i++ ){
+						if(!(list.get(i).isSurfaceLot())) {
+							list.get(i).setMarkerFalse();
+						}
+					}
+				} else {
+					for(int i = 0; i <list.size(); i++ ) {
+						if(!(list.get(i).isSurfaceLot())) {
+							list.get(i).setMarkerTrue();
+						}
+					}
 				}
 				break;
 			case R.id.checkbox_street:
 				if (checked) {
-					// check if parkingspot is street if it is leave it on other-wise turn off marker
-				}
-				else {
-					//Undo the change
+					for(int i = 0; i <list.size(); i++ ){
+						if(!(list.get(i).isStreetParking())) {
+							list.get(i).setMarkerFalse();
+						}
+					}
+				} else {
+					for(int i = 0; i <list.size(); i++ ) {
+						if(!(list.get(i).isStreetParking())) {
+							list.get(i).setMarkerTrue();
+						}
+					}
 				}
 				break;
 			case R.id.checkbox_parkade:
 				if (checked) {
 					for(int i = 0; i <list.size(); i++ ){
+						if(!(list.get(i).isParkade())) {
 							list.get(i).setMarkerFalse();
-							System.out.println("TEST");
-					//	TODO: NOT TURNING OFF MARKERS NEED TO FIX
+						}
 					}
-
 				} else {
+					for(int i = 0; i <list.size(); i++ ) {
+						if(!(list.get(i).isParkade())) {
+							list.get(i).setMarkerTrue();
+						}
+					}
 				}
 				break;
 			// TODO: Add in code to send to filters
