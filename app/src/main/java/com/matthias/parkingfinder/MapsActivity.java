@@ -93,6 +93,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		});
 
 		/**
+		 * PRICE FILTER PRESS BUTTON TO APPLY FILTERS
+		 */
+		final Button timeButton = (Button) findViewById(R.id.price);
+		timeButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				onClickTime(v, parkingSpaces);
+			}
+		});
+		/**
 		 * CLEAR FILTER PRESS BUTTON TO CLEAR  FILTERS AND RESET MARKERS
 		 */
 		final Button clearButton = (Button) findViewById(R.id.clear);
@@ -196,7 +205,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 					}
 				}
 				break;
-			// TODO: Add in code to send to filters
 		}
 	}
 	public void onClickClear (View view,ArrayList<ParkingSpace> list)
@@ -215,7 +223,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		checkBox1.setChecked(false);
 		checkBox2.setChecked(false);
 		checkBox3.setChecked(false);
-			// TODO: Add in code to send to filters
+			// TODO: clear price?
 	}
 	public void onClickPrice (View view, ArrayList<ParkingSpace> list){
 		EditText priceHrText = (EditText)findViewById(R.id.pricehr);
@@ -261,6 +269,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		System.out.println("PRICE: " + priceHr);
 	}
 
+	public void onClickTime(View view, ArrayList<ParkingSpace> list)
+	{
+		//TODO: Finish the time function
+	}
 	public void onClickList(View view)
 	{
 		startStubTestForParkingListActivity();
