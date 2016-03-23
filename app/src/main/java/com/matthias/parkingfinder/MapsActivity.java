@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.text.format.*;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -44,6 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 				onClickList(v);
 			}
 		});
+
 	}
 
 	private void startStubTestForParkingListActivity() {
@@ -79,6 +81,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		//Move camera to testing location
 		mMap.moveCamera(CameraUpdateFactory.newLatLng(U_OF_M));
 
+		final Button priceButton = (Button) findViewById(R.id.price);
+		priceButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				onClickPrice(v, parkingSpaces);
+			}
+		});
+
 		/**
 		 * CHECKBOX FILTERS ARE WORKING HERE IS THE CODE PARKCADE
 		 */
@@ -105,11 +114,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		CheckBox lotBox = (CheckBox) findViewById(R.id.checkbox_street);
 		lotBox.setOnClickListener(new View.OnClickListener() {
 			@Override
-			public void onClick(View v)
-			{
+			public void onClick(View v) {
 				onCheckboxClicked(v, parkingSpaces);
 			}
 		});
+
+
 
 	}
 
@@ -118,7 +128,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		return mMap;
 	}
 
-	/*
+	/**
 	 CHECK BOX FILTER CODE
 	 */
 	public void onCheckboxClicked(View view, ArrayList<ParkingSpace> list) {
@@ -175,6 +185,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 			// TODO: Add in code to send to filters
 		}
 	}
+
+	public void onClickPrice (View view, ArrayList<ParkingSpace> list){
+		EditText priceHrText = (EditText)findViewById(R.id.pricehr);
+		EditText priceFlatText = (EditText)findViewById(R.id.flatrate);
+		String valueHr = priceHrText.getText().toString();
+		String valueFlat = priceFlatText.getText().toString();
+		double priceHr = 0;
+		double priceFlat = 0;
+
+		try {
+			priceHr = Double.parseDouble(valueHr);
+			priceFlat = Double.parseDouble(valueFlat);
+		}
+		catch(Exception e) {
+			Log.e("logtag", "Exception: " + e.toString());
+		}
+
+		if(priceHr != 0)
+		{
+			for(int i = 0; i < list.size(); i++)
+			{
+				if(list.get(i).getPrice() > priceHr)
+				{
+					list.get(i).setMarkerFalse();
+				}
+			}
+		}
+		System.out.println("PRICE: " + priceHr);
+	};
 
 	public void onClickList(View view)
 	{

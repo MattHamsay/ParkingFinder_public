@@ -96,7 +96,7 @@
                     android:hint="Price/hr"
                     android:textColorHint="#FFFFFF"
                     android:textColor="#FFFFFF"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:paddingLeft="30dp"/>
 
                 <EditText
@@ -106,7 +106,7 @@
                     android:hint="Flat Rate"
                     android:textColorHint="#FFFFFF"
                     android:textColor="#FFFFFF"
-                    android:inputType="number"
+                    android:inputType="numberDecimal|numberSigned"
                     android:paddingLeft="30dp"/>
 
             </LinearLayout>
