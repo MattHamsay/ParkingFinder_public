@@ -39,7 +39,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		mapFragment.getMapAsync(this);
 
 		// test ParkingListActivity
-		final Button button = (Button) findViewById(R.id.type);
+		final Button button = (Button) findViewById(R.id.list);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				onClickList(v);
