@@ -65,7 +65,7 @@
                     android:paddingLeft="10dp"/>
 
                 <Button
-                    android:id="@+id/type"
+                    android:id="@+id/list"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:textSize="14sp"
