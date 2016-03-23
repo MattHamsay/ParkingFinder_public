@@ -233,6 +233,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		double priceHr = 0;
 		double priceFlat = 0;
 
+		/**
+		 * PARSES THE STRING INPUT TO DOUBLE
+		 */
 		try {
 			priceHr = Double.parseDouble(valueHr);
 			priceFlat = Double.parseDouble(valueFlat);
@@ -241,6 +244,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 			Log.e("logtag", "Exception: " + e.toString());
 		}
 
+		/**
+		 * IF THE USER TYPES BOTH A HR AND FLATE RATE NOTHING HAPPENS
+		 */
 		if(!(valueHr.equals("")) && !(valueFlat.equals(""))){
 			System.out.println("Nothing happened ");
 		}
