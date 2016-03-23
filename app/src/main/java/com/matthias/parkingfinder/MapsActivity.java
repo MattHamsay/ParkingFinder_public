@@ -6,9 +6,12 @@ import android.graphics.BitmapFactory;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.text.format.*;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -76,8 +79,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		//Move camera to testing location
 		mMap.moveCamera(CameraUpdateFactory.newLatLng(U_OF_M));
 
-		CheckBox checkBox = (CheckBox) findViewById(R.id.checkbox_parkade);
-		checkBox.setOnClickListener(new View.OnClickListener() {
+		/**
+		 * CHECKBOX FILTERS ARE WORKING HERE IS THE CODE PARKCADE
+		 */
+		CheckBox parkcadeBox = (CheckBox) findViewById(R.id.checkbox_parkade);
+		parkcadeBox.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onCheckboxClicked(v, parkingSpaces);
+			}
+		});
+		/**
+		 * CHECKBOX FILTERS ARE WORKING HERE IS THE CODE LOT PARKING
+		 */
+		CheckBox streetBox = (CheckBox) findViewById(R.id.checkbox_lot);
+		streetBox.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				onCheckboxClicked(v, parkingSpaces);
+			}
+		});
+		/**
+		 * CHECKBOX FILTERS ARE WORKING HERE IS THE CODE STREET PARKING
+		 */
+		CheckBox lotBox = (CheckBox) findViewById(R.id.checkbox_street);
+		lotBox.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v)
 			{
