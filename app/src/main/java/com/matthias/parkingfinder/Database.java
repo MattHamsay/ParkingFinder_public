@@ -32,6 +32,8 @@ public class Database
 		int         streetNumber        = 1;
 		String      zipCode             = "R3T 2N2";
 		double      price               = 3.5;
+		double      noFlatRate          = ParkingSpace.NO_FLAT_RATE;
+		double      flatRate            = 5;
 		TimePeriod  chargingTime;
 		TimePeriod  nonParkingTime;
 		ParkingSpace.ParkingType type   = ParkingSpace.ParkingType.PARKADE;
@@ -51,7 +53,7 @@ public class Database
 
 		distance = new Distance(0, 750, new Time(0, 2));        // could be (0.75)
 		address = new Address("Chancellor Meatheson Rd", streetNumber , zipCode, distance);
-		foo = new ParkingSpace(thumbnail, "U Lot Parking", address, 1.5,
+		foo = new ParkingSpace(thumbnail, "U Lot Parking", address, 1.5, noFlatRate,
 		                       chargingTime, nonParkingTime,
 		                       ParkingSpace.ParkingType.SURFACE_LOT, hasCamera, hasAttendant, marker);
 		list.add(foo);
@@ -64,7 +66,7 @@ public class Database
 		nonParkingTime = new TimePeriod(0, 0);
 		distance = new Distance(1.4, new Time(0, 3));
 		address = new Address("Dysart Rd", streetNumber , zipCode, distance);
-		foo = new ParkingSpace(thumbnail, "Q Lot Parking", address, 1.5,
+		foo = new ParkingSpace(thumbnail, "Q Lot Parking", address, 1.5, noFlatRate,
 		                       chargingTime, nonParkingTime,
 		                       ParkingSpace.ParkingType.SURFACE_LOT, hasCamera, hasAttendant,marker);
 		list.add(foo);
@@ -75,7 +77,7 @@ public class Database
 
 		chargingTime = new TimePeriod(0730,1630);
 		nonParkingTime = new TimePeriod(0, 0);
-		foo = new ParkingSpace(thumbnail, "Science Building Parking", address, 1.5,
+		foo = new ParkingSpace(thumbnail, "Science Building Parking", address, 1.5, flatRate,
 		                       chargingTime, nonParkingTime,
 		                       ParkingSpace.ParkingType.SURFACE_LOT, hasCamera, hasAttendant, marker);
 		list.add(foo);
@@ -87,7 +89,7 @@ public class Database
 		chargingTime = new TimePeriod(0730,1630);
 		nonParkingTime = new TimePeriod(0, 0);
 		address = new Address("Saunderson St", streetNumber , zipCode, new Distance(0, 650, new Time(0, 3)));
-		foo = new ParkingSpace(thumbnail, "B Lot Parking", address, 1.5,
+		foo = new ParkingSpace(thumbnail, "B Lot Parking", address, 1.5, flatRate + 1,
 		                       chargingTime, nonParkingTime,
 		                       ParkingSpace.ParkingType.SURFACE_LOT, hasCamera, hasAttendant, marker);
 		list.add(foo);
@@ -99,7 +101,7 @@ public class Database
 		chargingTime = new TimePeriod(0730,1630);
 		nonParkingTime = new TimePeriod(0, 0);
 		address = new Address("Saunderson St", streetNumber , zipCode, new Distance(0, 650, new Time(0, 3)));
-		foo = new ParkingSpace(thumbnail, "B Lot Parking Meter", address, 1.5,
+		foo = new ParkingSpace(thumbnail, "B Lot Parking Meter", address, 1.5,  flatRate - 1,
 		                       chargingTime, nonParkingTime,
 		                       ParkingSpace.ParkingType.SURFACE_LOT, hasCamera, hasAttendant, marker);
 		list.add(foo);
@@ -111,7 +113,7 @@ public class Database
 		chargingTime = new TimePeriod(0730,1630);
 		nonParkingTime = new TimePeriod(0, 0);
 		address = new Address("Saunderson St", streetNumber , zipCode, new Distance(0, 400, new Time(0, 3)));
-		foo = new ParkingSpace(thumbnail, "North Drake Center Parking", address, 1.5,
+		foo = new ParkingSpace(thumbnail, "North Drake Center Parking", address, 1.5,  flatRate + 0.5,
 		                       chargingTime, nonParkingTime,
 		                       ParkingSpace.ParkingType.SURFACE_LOT, hasCamera, hasAttendant, marker);
 		list.add(foo);
@@ -123,7 +125,7 @@ public class Database
 		chargingTime = new TimePeriod(0730,1630);
 		nonParkingTime = new TimePeriod(0, 0);
 		address = new Address("Saunderson St", streetNumber , zipCode, new Distance(0, 180, new Time(0, 1)));
-		foo = new ParkingSpace(thumbnail, "University Of Manitoba Eng Lot", address, 1.5,
+		foo = new ParkingSpace(thumbnail, "University Of Manitoba Eng Lot", address, 1.5, flatRate + 0.5,
 		                       chargingTime, nonParkingTime,
 		                       ParkingSpace.ParkingType.SURFACE_LOT, hasCamera, hasAttendant, marker);
 		list.add(foo);
@@ -135,7 +137,7 @@ public class Database
 		chargingTime = new TimePeriod(0,0);
 		nonParkingTime = new TimePeriod(0730, 1630);
 		address = new Address("Saunderson St", streetNumber , zipCode, new Distance(0, 650, new Time(0, 3)));
-		foo = new ParkingSpace(thumbnail, "University Of Manitoba B Lot", address, 0,
+		foo = new ParkingSpace(thumbnail, "University Of Manitoba B Lot", address, 0,  flatRate + 1.5,
 		                       chargingTime, nonParkingTime,
 		                       ParkingSpace.ParkingType.SURFACE_LOT, hasCamera, hasAttendant, marker);
 		list.add(foo);
@@ -147,7 +149,7 @@ public class Database
 		chargingTime = new TimePeriod(0,24);
 		nonParkingTime = new TimePeriod(0, 0);
 		address = new Address("Saunderson St", streetNumber , zipCode, new Distance(1.2, new Time(0, 3)));
-		foo = new ParkingSpace(thumbnail, "University Parkade", address, 4,
+		foo = new ParkingSpace(thumbnail, "University Parkade", address, 4, noFlatRate,
 		                       chargingTime, nonParkingTime,
 		                       ParkingSpace.ParkingType.PARKADE, hasCamera, hasAttendant, marker);
 		list.add(foo);

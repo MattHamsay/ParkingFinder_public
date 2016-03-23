@@ -12,6 +12,8 @@ import java.util.Comparator;
  */
 public class ParkingSpace implements Serializable
 {
+	static final double NO_FLAT_RATE = -1;          // if no flat rate for the lot, this should be used.
+
 	// constant var for parking space parkingType
 	enum ParkingType implements Serializable
 	{ STREET_PARKING, PARKADE, SURFACE_LOT }
@@ -21,6 +23,7 @@ public class ParkingSpace implements Serializable
 	private String name;
 	private Address address;
 	private double price;
+	private double flatRate;                        // if no flat rate
 	private TimePeriod chargingTimePeriod;          // non-charging time = 24 hours - charging time - nonParkingTime
 	private TimePeriod nonParkingTimePeriod;        // times when people are not allowed to park
 	private ParkingType parkingType;
@@ -32,7 +35,7 @@ public class ParkingSpace implements Serializable
 
 	public ParkingSpace(){}							//Null Constructor
 
-	public ParkingSpace(Bitmap thumbnail, String name, Address address, double price,
+	public ParkingSpace(Bitmap thumbnail, String name, Address address, double price, double flatRate,
 	                    TimePeriod chargingTimePeriod, TimePeriod nonParkingTimePeriod,
 	                    ParkingType parkingType, boolean hasCamera, boolean hasAttendant, Marker marker)
 	{
@@ -40,6 +43,7 @@ public class ParkingSpace implements Serializable
 		this.name = name;
 		this.address = address;
 		this.price = price;
+		this.flatRate = flatRate;
 		this.chargingTimePeriod = chargingTimePeriod;
 		this.nonParkingTimePeriod = nonParkingTimePeriod;
 		this.parkingType = parkingType;
@@ -67,6 +71,12 @@ public class ParkingSpace implements Serializable
 
 	double getPrice()
 	{ return price; }
+
+	boolean hasFlatRate()
+	{ return flatRate != NO_FLAT_RATE || flatRate >= 0; }
+
+	double getFlatRate()
+	{ return flatRate; }
 
 	String getPriceString()
 	{ return String.format("$%.1f / hr", getPrice()); }
