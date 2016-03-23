@@ -81,10 +81,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		//Move camera to testing location
 		mMap.moveCamera(CameraUpdateFactory.newLatLng(U_OF_M));
 
+
+		/**
+		 * PRICE FILTER PRESS BUTTON TO APPLY FILTERS
+		 */
 		final Button priceButton = (Button) findViewById(R.id.price);
 		priceButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				onClickPrice(v, parkingSpaces);
+			}
+		});
+
+		/**
+		 * CLEAR FILTER PRESS BUTTON TO CLEAR  FILTERS AND RESET MARKERS
+		 */
+		final Button clearButton = (Button) findViewById(R.id.clear);
+		clearButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				onClickClear(v, parkingSpaces);
 			}
 		});
 
@@ -185,7 +199,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 			// TODO: Add in code to send to filters
 		}
 	}
+	public void onClickClear (View view,ArrayList<ParkingSpace> list)
+	{
+		CheckBox checkBox1 = (CheckBox)findViewById(R.id.checkbox_lot);
+		CheckBox checkBox2 = (CheckBox)findViewById(R.id.checkbox_street);
+		CheckBox checkBox3 = (CheckBox)findViewById(R.id.checkbox_parkade);
 
+		System.out.println("Clearbutton was pressed");
+
+		for(int i = 0; i < list.size(); i ++)
+		{
+			list.get(i).setMarkerTrue();
+		}
+
+		checkBox1.setChecked(false);
+		checkBox2.setChecked(false);
+		checkBox3.setChecked(false);
+			// TODO: Add in code to send to filters
+	}
 	public void onClickPrice (View view, ArrayList<ParkingSpace> list){
 		EditText priceHrText = (EditText)findViewById(R.id.pricehr);
 		EditText priceFlatText = (EditText)findViewById(R.id.flatrate);
@@ -202,8 +233,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 			Log.e("logtag", "Exception: " + e.toString());
 		}
 
-		if(priceHr != 0)
+		if(!(valueHr.equals("")) && !(valueFlat.equals(""))){
+			System.out.println("Nothing happened ");
+		}
+		else if(!(valueHr.equals("")))
 		{
+			System.out.println("price hr filter happened ");
 			for(int i = 0; i < list.size(); i++)
 			{
 				if(list.get(i).getPrice() > priceHr)
@@ -212,8 +247,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 				}
 			}
 		}
+		else if(!(valueFlat.equals("")))
+		{
+			System.out.println("flat rate happened ");
+			for(int i = 0; i < list.size(); i++)
+			{
+				if(list.get(i).getFlatRate() > priceFlat)
+				{
+					list.get(i).setMarkerFalse();
+				}
+			}
+		}
 		System.out.println("PRICE: " + priceHr);
-	};
+	}
 
 	public void onClickList(View view)
 	{
