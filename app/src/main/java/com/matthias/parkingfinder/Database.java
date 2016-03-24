@@ -132,7 +132,7 @@ public class Database
 
 		/*New Parking Addition Index 7*/
 		latlng = new LatLng(49.806301, -97.132372);
-		marker = gMap.addMarker(new MarkerOptions().position(latlng).title("University Of Manitoba B Lot").snippet("Restricted: 7:30-4:30pm Free: 4:30am to 7:30am"));
+		marker = gMap.addMarker(new MarkerOptions().position(latlng).title("University Of Manitoba D Lot").snippet("Restricted: 7:30-4:30pm Free: 4:30am to 7:30am"));
 
 		chargingTime = new TimePeriod(0,0);
 		nonParkingTime = new TimePeriod(0730, 1630);

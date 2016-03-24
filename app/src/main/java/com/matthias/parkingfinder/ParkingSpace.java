@@ -72,6 +72,10 @@ public class ParkingSpace implements Serializable
 	double getPrice()
 	{ return price; }
 
+	boolean	checkChargeTime(TimePeriod time) { return chargingTimePeriod.hasOverlapWith(time);}
+	
+	boolean checkNoParkingTime (TimePeriod time) {return nonParkingTimePeriod.hasOverlapWith(time);}
+
 	boolean hasFlatRate()
 	{ return flatRate != NO_FLAT_RATE || flatRate >= 0; }
 

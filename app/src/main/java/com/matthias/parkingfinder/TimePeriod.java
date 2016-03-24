@@ -27,7 +27,17 @@ public class TimePeriod implements Serializable
 	 */
 	boolean hasOverlapWith(TimePeriod timePeriod)
 	{
-		return false;
+		boolean result;
+
+		if ((this.from < timePeriod.from) && (this.to > timePeriod.to))
+		{
+			result = true;
+		}
+		else
+		{
+			result = false;
+		}
+		return result;
 	}
 
 	/**

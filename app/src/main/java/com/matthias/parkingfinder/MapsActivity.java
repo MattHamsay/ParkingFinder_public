@@ -95,7 +95,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 		/**
 		 * PRICE FILTER PRESS BUTTON TO APPLY FILTERS
 		 */
-		final Button timeButton = (Button) findViewById(R.id.price);
+		final Button timeButton = (Button) findViewById(R.id.time);
 		timeButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				onClickTime(v, parkingSpaces);
@@ -255,7 +255,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 			System.out.println("price hr filter happened ");
 			for(int i = 0; i < list.size(); i++)
 			{
-				if(list.get(i).getPrice() > priceHr)
+				if(list.get(i).getPrice() >= priceHr)
 				{
 					list.get(i).setMarkerFalse();
 				}
@@ -277,6 +277,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 	public void onClickTime(View view, ArrayList<ParkingSpace> list)
 	{
+		EditText timeStartTxt = (EditText)findViewById(R.id.starttime);
+		EditText durationText = (EditText)findViewById(R.id.duration);
+		String valueStart = timeStartTxt.getText().toString();
+		String valueDuration = durationText.getText().toString();
+		int startTime = 0;
+		int duration = 0;
+
+		try {
+			startTime = Integer.parseInt(valueStart);
+			duration = Integer.parseInt(valueDuration);
+		}
+		catch(Exception e) {
+			Log.e("logtag", "Exception: " + e.toString());
+		}
+
+		TimePeriod time =  new TimePeriod(startTime, duration+startTime);
+
+		for(int i = 0; i < list.size(); i ++)
+		{
+
+			if(!(list.get(i).checkChargeTime(time)))
+			{
+				if((list.get(i).checkNoParkingTime(time)))
+					list.get(i).setMarkerFalse();
+			}
+		}
 		//TODO: Finish the time function
 	}
 	public void onClickList(View view)
